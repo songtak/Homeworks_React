@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStore } from '../../Stores/Helper';
 import SubwayMenu from './SubwayMenu';
 
@@ -32,47 +32,28 @@ const topping = [
 ]
 
 
-
 const SubwayMenuList = observer(() => {
     const { subwayStore } = useStore();
-    
 
-    const onChangeMenu = (name, price) =>{
-        subwayStore.put(name, price)
-    }
-
-    const onSelectMenu = () => {
-         switch (subwayStore.menus){
-             case "breads": bread.map((item) => <SubwayMenu {...item} key={item.name} onClick={onChangeMenu}/>); break;
-             case "meats": meat.map((item) => <SubwayMenu {...item} key={item.name} onClick={onChangeMenu}/>); break;
-             case "veggies": veggie.map((item) => <SubwayMenu {...item} key={item.name} onClick={onChangeMenu}/>); break;
-             case "sources": source.map((item) => <SubwayMenu {...item} key={item.name} onClick={onChangeMenu}/>); break;
-             case "toppings": topping.map((item) => <SubwayMenu {...item} key={item.name} onClick={onChangeMenu}/>); break;
-         }
-    };
-
-
-    const onBread = (name, price) => {
+    const onPut = (name, price) => {
         subwayStore.put(name, price)
       }
 
+    const menuLists  = subwayStore.menus.map((item) => <SubwayMenu {...item} key={item.name} onClick={onPut}/>)
 
-    const breads = bread.map((item) => <SubwayMenu {...item} key={item.name} onClick={onBread}/>)
-    // const meats = meat.map((item) => <SubwayMenu {...item} key={item.name} onClick={onMeat}/>)
-    // const veggies = veggie.map((item) => <SubwayMenu {...item} key={item.name} onClick={onVeggie}/>)
-    // const sources = source.map((item) => <SubwayMenu {...item} key={item.name} onClick={onSource}/>)
-    // const toppings = topping.map((item) => <SubwayMenu {...item} key={item.name} onClick={onTopping}/>)
+    const onMenu = (menu) => {
+        subwayStore.menus = menu
+    } 
 
     return (
         <div>
-            <button>bread</button>
-            <button>meat</button>
-            <button>veggie</button>
-            <button>source</button>
-            <button>topping</button>
-
-        <div>{breads}</div>
-
+            <button onClick={()=>onMenu(bread)}>bread</button>
+            <button onClick={()=>onMenu(meat)}>meat</button>
+            <button onClick={()=>onMenu(veggie)}>veggie</button>
+            <button onClick={()=>onMenu(source)}>source</button>
+            <button onClick={()=>onMenu(topping)}>topping</button>
+            <p></p>
+        {menuLists}
         </div>
     );
 });

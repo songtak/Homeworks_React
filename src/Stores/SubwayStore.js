@@ -7,7 +7,6 @@ export default class SubwayStore {
 
     @observable chooseItems = [];
     @observable menus = [];
-
     @observable breads = [];
     @observable meats = [];
     @observable veggies = [];

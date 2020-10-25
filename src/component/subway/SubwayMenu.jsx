@@ -14,7 +14,4 @@ const SubwayMenu = (props) => {
 
 export default SubwayMenu;
 
-//여기서 받아오는 값들이 다르지 않나? 이름이 다르니까 그래서 여기서 조건부 렌더링하고???
-//List에서도 바꿔줘야 하나?
-//여기서 조건부 렌더링으로 메뉴 종류 이름을 명시해 줘야하나?
 
