@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {ToastContainer, Slide} from 'react-toastify';
 
-function App() {
+import Main from "./component/Main"
+import Counter from "./component/Counter";
+import SuperMarket from "./component/markets/SuperMarket";
+import Info from "./component/Info";
+import Subway from "./component/subway/Subway";
+
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <BrowserRouter>
+    <Switch>
+      <Route path="/main" component={Main} />
+      <Route path="/counter" component={Counter} />
+      <Route path="/subway" component={Subway} />
+      <Route path="/superMarket" component={SuperMarket} />
+      <Route path="/info" component={Info} />
+    </Switch>
+    </BrowserRouter>
+    </>
+
+
   );
-}
+};
 
 export default App;
+
+
+  // import React from 'react';
+ 
+  // import { ToastContainer, toast } from 'react-toastify';
+  // import 'react-toastify/dist/ReactToastify.css';
+  
+  // function App(){
+  //   const notify = () => toast("Wow so easy !");
+ 
+  //   return (
+  //     <div>
+  //       <button onClick={notify}>Notify</button>
+  //       <ToastContainer />
+  //     </div>
+  //   );
+  // };
+  // export default App;
